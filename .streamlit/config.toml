@@ -1,5 +1,21 @@
 [theme]
-backgroundColor="#9cafc5"
-secondaryBackgroundColor="#baf1ba"
-textColor="#0e0f10"
-font="serif"
+# Couleur principale (Boutons, curseurs, liens)
+primaryColor = "#FF4B4B" 
+
+# Couleur de fond de la zone principale
+backgroundColor = "#FFFFFF"
+
+# Couleur de fond secondaire (Sidebar et zones de texte)
+secondaryBackgroundColor = "#F0F2F6"
+
+# Couleur du texte
+textColor = "#262730"
+
+# Police de caractères
+font = "sans serif"
+
+[server]
+# Optimisation de l'affichage
+headless = true
+enableCORS = false
+enableXsrfProtection = false
