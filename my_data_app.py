@@ -139,6 +139,7 @@ else:
             st.session_state[f"data_{cat_tech}"] = scraper_dakar_auto(nb_pages, cat_tech)
         
         if f"data_{cat_tech}" in st.session_state:
+            st.info('Dimention des données: ' + str(st.session_state[f"data_{cat_tech}"].shape[0]) + ' lignes and ' + str(st.session_state[f"data_{cat_tech}"].shape[1]) + ' colonnes.')
             st.dataframe(st.session_state[f"data_{cat_tech}"], use_container_width=True)
 
     elif action_choisie == "Scraper avec Web Scraper":
@@ -148,6 +149,7 @@ else:
             df_ws = pd.read_csv(f"datas/{cat_tech}.csv")
             st.session_state[f"data_{cat_tech}"] = df_ws
             st.success("Données chargées avec succès !")
+            st.info('Dimention des données: ' + str(df_ws.shape[0]) + ' lignes and ' + str(df_ws.shape[1]) + ' colonnes.')
             st.dataframe(df_ws, use_container_width=True)
         except:
             st.warning(f"Aucun fichier trouvé : `datas/{cat_tech}.csv` n'existe pas.")
@@ -178,4 +180,5 @@ else:
         else:
 
             st.info("Scrapez des données pour afficher les graphiques.")
+
 
