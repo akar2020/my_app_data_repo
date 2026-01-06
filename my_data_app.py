@@ -167,7 +167,10 @@ else:
             cl, cr = st.columns(2)
             with cl:
                 st.subheader("Top Marques")
-                st.bar_chart(df['Marque'].value_counts().head(10))
+                try:
+                    st.bar_chart(df['Marque'].value_counts().head(10))
+                except:
+                    st.bar_chart(df['titre'].value_counts().head(10))
             with cr:
                 st.subheader("Volume par Année")
                 if 'Année' in df.columns:
@@ -175,3 +178,4 @@ else:
         else:
 
             st.info("Scrapez des données pour afficher les graphiques.")
+
