@@ -144,7 +144,7 @@ else:
     elif action_choisie == "Scraper avec Web Scraper":
         st.header(f"Importation obtenues via Web Scraper ({cat_tech})")
         try:
-            # On cherche dans le dossier 'datas' comme dans votre code
+            # On cherche dans le dossier 'datas'
             df_ws = pd.read_csv(f"datas/{cat_tech}.csv")
             st.session_state[f"data_{cat_tech}"] = df_ws
             st.success("Données chargées avec succès !")
@@ -173,4 +173,5 @@ else:
                 if 'Année' in df.columns:
                     st.line_chart(df['Année'].value_counts().sort_index())
         else:
+
             st.info("Scrapez des données pour afficher les graphiques.")
