@@ -141,6 +141,7 @@ else:
         if f"data_{cat_tech}" in st.session_state:
             st.info('Dimention des données: ' + str(st.session_state[f"data_{cat_tech}"].shape[0]) + ' lignes and ' + str(st.session_state[f"data_{cat_tech}"].shape[1]) + ' colonnes.')
             st.dataframe(st.session_state[f"data_{cat_tech}"], use_container_width=True)
+            st.write('Source: '+ str(cat_urls[cat_tech]))
 
     elif action_choisie == "Scraper avec Web Scraper":
         st.header(f"Importation obtenues via Web Scraper ({cat_tech})")
@@ -151,6 +152,7 @@ else:
             st.success("Données chargées avec succès !")
             st.info('Dimention des données: ' + str(df_ws.shape[0]) + ' lignes and ' + str(df_ws.shape[1]) + ' colonnes.')
             st.dataframe(df_ws, use_container_width=True)
+            st.write('Source: '+ str(cat_urls[cat_tech]))
         except:
             st.warning(f"Aucun fichier trouvé : `datas/{cat_tech}.csv` n'existe pas.")
 
@@ -169,16 +171,25 @@ else:
             cl, cr = st.columns(2)
             with cl:
                 st.subheader("Top Marques")
-                try:
+                if 'Marque' in df.columns:
                     st.bar_chart(df['Marque'].value_counts().head(10))
-                except:
+                elif 'titre' in df.columns:
                     st.bar_chart(df['titre'].value_counts().head(10))
+                elif 'marque' in df.columns:
+                    st.bar_chart(df['marque'].value_counts().head(10))
+                else:
+                    st.info("Scrapez des données pour afficher les graphiques.")
             with cr:
                 st.subheader("Volume par Année")
                 if 'Année' in df.columns:
                     st.line_chart(df['Année'].value_counts().sort_index())
+                else:
+                    st.info("Scrapez des données pour afficher les graphiques.")
+            st.write('Source: '+ str(cat_urls[cat_tech]))   
+
         else:
 
             st.info("Scrapez des données pour afficher les graphiques.")
+
 
 
